@@ -14,6 +14,9 @@ jobs:
             - run: |
                   set -e
                   cd tencentcloud
-                  curl -sSL --fail https://github.com/cue-lang/cue/releases/download/v0.15.1/cue_v0.15.1_linux_amd64.tar.gz | tar -xzf - cue
-                  ./cue version
-                  ./cue cmd tf-gen
+                  curl -sSL --fail https://github.com/cue-lang/cue/releases/download/v0.15.1/cue_v0.15.1_linux_amd64.tar.gz | tar -xzf - -C /usr/local/bin cue
+                  cue version
+                  cue eval
+                  cue def
+                  cue export
+                  cue cmd tf-gen
