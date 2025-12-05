@@ -1,0 +1,18 @@
+name: Continuous Integration
+
+on:
+    push:
+        branches:
+            - main
+            - test/*
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - run: |
+                  set -e
+                  curl -L https://github.com/cue-lang/cue/releases/download/v0.15.1/cue_v0.15.1_linux_amd64.tar.gz | tar --strip-components=1 -xzf - -C /usr/local/bin cue
+                  cd tencentcloud
+                  cue cmd tf-gen
